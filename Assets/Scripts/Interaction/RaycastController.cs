@@ -25,21 +25,22 @@ public class RaycastController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        interactionInfo.text = "";
         RaycastHit hit;
-        Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance, layerMask);
-        Debug.Log($"Raycast hit {hit.collider.gameObject.name}");
-        if (hit.collider.gameObject.GetComponent<Interactable>() != null)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance, layerMask))
         {
-            if (Input.GetMouseButton(0))
+            Debug.Log($"Raycast hit {hit.collider.gameObject.GetComponent<Interactable>().id}");
+            if (hit.collider.gameObject.GetComponent<Interactable>() != null)
             {
-                Debug.Log("Interacted");
-                hit.collider.gameObject.GetComponent<Interactable>().Interact();
+                if (Input.GetMouseButton(0))
+                {
+                    Debug.Log("Interacted");
+                    hit.collider.gameObject.GetComponent<Interactable>().Interact();
+                }
+                interactionInfo.text = hit.collider.gameObject.GetComponent<Interactable>().id;
             }
-            interactionInfo.text = hit.collider.gameObject.GetComponent<Interactable>().id; 
+            else interactionInfo.text = "";
         }
-        else interactionInfo.text = "";
-
+        //else interactionInfo.text = "";
 
 
         //TODO: Raycast

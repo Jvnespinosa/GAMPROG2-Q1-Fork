@@ -8,6 +8,11 @@ public class InventoryManager : MonoBehaviour
     //For now, this will store information of the Items that can be added to the inventory
     public List<ItemData> itemDatabase;
 
+    //public void addItem(InventoryManager items)
+    //{
+    //    inventorySlots.Add(items);
+    //}
+
     //Store all the inventory slots in the scene here
     public List<InventorySlot> inventorySlots;
 
@@ -69,15 +74,23 @@ public class InventoryManager : MonoBehaviour
 
     public int GetEmptyInventorySlot()
     {
-        //TODO
         //Check which inventory slot doesn't have an Item and return its index
+        for(int i = 0; i < itemDatabase.Count - 1; i++)
+        {
+            if (!inventorySlots[i].HasItem())
+                return i;
+        }
         return -1;
     }
 
     public int GetEquipmentSlot(EquipmentSlotType type)
     {
-        //TODO
         //Check which equipment slot matches the slot type and return its index
+        for(int i = 0; i < equipmentSlots.Count - 1; i++)
+        {
+            if (equipmentSlots[i].type == type)
+                return i;
+        }
         return -1;
     }
 }
