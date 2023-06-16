@@ -16,11 +16,12 @@ public enum ItemType
 {
     Consumable,
     Equipabble, 
+    Key
 }
 
 public enum EquipmentSlotType
 {
-    Head, Body, Hand
+    None, Head, Body, LeftH, RightH, Feet
     // Define other equipment slots here
 }
 
@@ -39,7 +40,6 @@ public class Attribute
 
 public enum AttributeType
 {
-    HP, MP, STR, DEF
-    // TODO
+    HP, MP, STR, DEF, AGI
     // Add other attribute types here
 }

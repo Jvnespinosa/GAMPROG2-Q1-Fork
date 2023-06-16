@@ -8,12 +8,19 @@ public class EquipmentSlot : MonoBehaviour
     [SerializeField] private Image defaultIcon;
     [SerializeField] private Image itemIcon;
     public EquipmentSlotType type;
+    public InventoryManager InventoryManager;
 
+    private string DataItem;
     private ItemData itemData;
 
     public void SetItem(ItemData data)
     {
-        // TODO
+        Debug.Log($"Equiping {data.icon} to {itemIcon.sprite}");
+        itemIcon.sprite = data.icon;
+        itemIcon.enabled = true;
+        defaultIcon.enabled = false;
+        DataItem = data.id;
+
         // Set the item data the and icons here
         // Make sure to apply the attributes once an item is equipped
     }
@@ -24,5 +31,10 @@ public class EquipmentSlot : MonoBehaviour
         // Check if there is an available inventory slot before removing the item.
         // Make sure to return the equipment to the inventory when there is an available slot.
         // Reset the item data and icons here
+    }
+
+    public bool WithItem()
+    {
+        return itemIcon.sprite != null;
     }
 }
