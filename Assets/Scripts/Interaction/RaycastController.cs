@@ -14,9 +14,34 @@ public class RaycastController : MonoBehaviour
     //The UI text component that will display the name of the interactable hit
     public TextMeshProUGUI interactionInfo;
 
+    public bool IsGrounded()
+    {
+        Debug.Log(Physics.Raycast(transform.position, -Vector3.up //-transform.up
+            , raycastDistance, layerMask));
+        return Physics.Raycast(transform.position, -Vector3.up //transform.up
+            , raycastDistance, layerMask);
+    }
+
     // Update is called once per frame
     private void Update()
     {
+        RaycastHit hit;
+
+        //Grounded
+        if(Physics.Raycast(transform.position, -transform.up, raycastDistance, layerMask))
+        {
+            
+        }
+
+
+        //Debug.Log("Raycast Hit");
+           //if (Input.GetMouseButtonDown(0))
+            //{
+                //Interactable;
+           //}
+
+
+
         //TODO: Raycast
         //1. Perform a raycast originating from the gameobject's position towards its forward direction.
         //   Make sure that the raycast will only hit the layer specified in the layermask
