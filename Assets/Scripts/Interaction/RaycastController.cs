@@ -12,7 +12,8 @@ public class RaycastController : MonoBehaviour
     //The layer that will determine what the raycast will hit
     LayerMask layerMask;
     //The UI text component that will display the name of the interactable hit
-    public TextMeshProUGUI interactionInfo;
+    [SerializeField]
+    private TextMeshProUGUI interactionInfo;
 
     public bool IsGrounded()
     {
@@ -40,10 +41,8 @@ public class RaycastController : MonoBehaviour
             }
             else interactionInfo.text = "";
         }
-        //else interactionInfo.text = "";
+        else interactionInfo.text = "";
 
-
-        //TODO: Raycast
         //1. Perform a raycast originating from the gameobject's position towards its forward direction.
         //   Make sure that the raycast will only hit the layer specified in the layermask
         //2. Check if the object hits any Interactable. If it does, show the interactionInfo and set its text

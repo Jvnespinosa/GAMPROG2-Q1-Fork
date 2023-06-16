@@ -75,9 +75,8 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
             }
-
-            Debug.Log($"Used {data.id}");
         }
+
         else if (data.type == ItemType.Equipabble)
         {
             
@@ -88,9 +87,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     equipmentSlots[slot].Unequip();
                     equipmentSlots[slot].SetItem(data);
+                    
                 }
-                else Debug.Log("No More Space");
+                else Debug.Log("No More Space!");
             }
+
             else
             {
                 equipmentSlots[slot].SetItem(data);
@@ -147,5 +148,17 @@ public class InventoryManager : MonoBehaviour
                 return i;
         }
         return -1;
+    }
+
+    public bool WithKey()
+    {
+        int index = GetEmptyInventorySlot();
+        if (index < 0) index = itemDatabase.Count - 1;
+        for (int i = 0; i < index; i++)
+        {
+            if (inventorySlots[i].checkKey() == true)
+                return true;
+        }
+        return false;
     }
 }
